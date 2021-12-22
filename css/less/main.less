@@ -1,8 +1,10 @@
 :root {
-	--clr-base: #000;
-	--clr-att: #f00;
+	--clr-base: #212529;
+	--clr-button-att: #41CA2F;
+    --clr-att: #4BC53A;
+    --clr-border: #e4e4e4;
 
-	--min: 320px;
+	--min: 360px;
 	--max: 1200px;
 
 	font-size: 10px;
@@ -19,9 +21,12 @@
 body {
 	color: var(--clr-base, #000);
 	background: #fff;
+    font-size: 14px;
+    line-height: 1.2;
 }
 p, ul, ol {
 	position: relative;
+    margin-bottom: 1.2em;
 	img {
 		max-width: 100%;
 	}
@@ -32,6 +37,34 @@ p, ul, ol {
 
 li {
 	position: relative;
+}
+ol.list-number {
+    counter-reset: li; 
+    list-style: none;
+    font-size: 16px;
+    line-height: 20px;
+    li {
+    	position: relative;
+        padding: 8px 10px 8px 0;
+        min-height: 45px;
+        border-bottom: 1px solid #ececec;
+        display: flex;
+        align-items: center;
+    	&:before {
+    		content: '0' counter(li); 
+			counter-increment: li;
+            display: block;
+            flex-shrink: 0;
+            width: 30px;
+            font-size: 18px;
+            line-height: 20px;
+            color: #4BC53A;
+            border-radius: 0;
+            background: none;
+            margin: 0;
+            position: static;
+    	}
+    }
 }
 a {
 	text-decoration: none;
@@ -48,6 +81,55 @@ a.link-main, .link-main {
 		border-bottom: none;
 	}
 }
+.link-red {
+    color: #ff5555;
+    &:hover {
+        color: #f00;
+    }
+}
+.link-phone, .link-email {
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.link-phone {
+    display: block;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: bold;
+    text-decoration: none;
+    color: var(--clr-base);
+}
+.link-email {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 15px;
+    line-height: 24px;
+    color: #8B8B8B;
+    text-decoration: none;
+    padding: 0 0 0 18px;
+    &:before {
+        content: "";
+        display: block;
+        width: 12px;
+        height: 12px;
+        position: absolute;
+        top: 12px;
+        left: 0;
+        margin-top: -5px;
+        background: url(../img/icons/email.svg) center no-repeat;
+        background-size: 100% auto;
+        filter: grayscale(100%);
+        transition: all ease 0.2s;
+    }
+    &:hover {
+        &:before {
+            filter: none;
+        }
+    }
+}
+.main-title,
 h1, .h1-title,
 h2, .h2-title,
 h3, .h3-title,
@@ -56,7 +138,26 @@ h5, .h5-title,
 h6, .h6-title {
 	display: block;
 	position: relative;
+    font-weight: bold;
+    line-height: 1.15;
     &:first-child {
         margin-top: 0;
+    }
+}
+.title-att, .text-att {
+    color: #57CA48;
+}
+@media (min-width: 1024px) {
+    ol.list-number {
+        font-size: 18px;
+        line-height: 24px;
+        li {
+            min-height: 59px;
+            &:before {
+                font-size: 22px;
+                line-height: 24px;
+                width: 36px;
+            }
+        }
     }
 }

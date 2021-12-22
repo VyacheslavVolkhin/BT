@@ -100,7 +100,195 @@ $(document).ready(function(){
 			$(this).addClass('active').next('.js-tab-content').slideDown(200);
 		}
 	})
-	
+
+
+    //main-gallery-box
+    if (!!$('.main-gallery-box').offset()) {
+        $('.main-gallery-box .slider').slick({
+            dots: true,
+            slidesToShow: 1,
+            variableWidth: false,
+            infinite: true,
+            adaptiveHeight: false,
+            prevArrow: '<span class="btn-action-ico ico-arrow ico-arrow-prev"></span>',
+            nextArrow: '<span class="btn-action-ico ico-arrow ico-arrow-next"></span>',
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        prevArrow: false,
+                        nextArrow: false,
+                    }
+                },
+            ]
+        });
+    }
+
+    //main-brands-box
+    if (!!$('.main-brands-box').offset()) {
+        $('.main-brands-box .slider').slick({
+            dots: false,
+            infinite: false,
+            slidesToShow: 6,
+            variableWidth: false,
+            adaptiveHeight: false,
+            prevArrow: false,
+            nextArrow: false,
+            responsive: [
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 1,
+                        dots: true,
+                        infinite: true,
+                    }
+                },
+            ]
+        });
+    }
+    
+    
+/*
+    $(window).scroll(function () {
+        let windowTop = $(window).scrollTop();
+        let bodyHeight = $(window).innerHeight();
+        let rHeight = $('.js-box').outerHeight();
+        let rOTop = $('.js-box').offset().top; //позиция верха блока от верха <body>
+        let rPTop = $('.js-box').position().top; //позиция верха блока от верха родительсого блока с relative
+        let rBTop = rOTop - windowTop; //позиция верха блока от верха браузера
+        if (((bodyHeight+windowTop) > rOTop) && ((windowTop) < (rOTop + rHeight))) {
+            console.log('блок в поле зрения')
+        }
+        if ((bodyHeight+windowTop) < rOTop) {
+            console.log('блок ниже нижней границы')
+        }
+        if ((windowTop) > (rOTop + rHeight)) {
+            console.log('блок выше верхней границы')
+        }
+    });
+*/
 });
 
+//animation
+//animate round
+$(window).scroll(function () {
+    let windowTop = $(window).scrollTop();
+    let bodyHeight = $(window).innerHeight();
+    
+    //animation black round
+    let rHeight = $('.js-decor-round').outerHeight();
+    let rOTop = $('.js-decor-round').offset().top; //позиция верха блока от верха <body>
+    let rPTop = $('.js-decor-round').position().top; //позиция верха блока от верха родительсого блока с relative
+    let rBTop = rOTop - windowTop; //позиция верха блока от верха браузера
+    let rPercentAnimation=1;
+    if (((bodyHeight+windowTop) > rOTop) && ((windowTop) < (rOTop + rHeight))) {
+        if ((rPercentAnimation < 100) && (rPercentAnimation > 0)) {
+            rPercentAnimation = (rBTop/bodyHeight)*9;
+        $('.js-decor-round .decor-element').css('top', rPercentAnimation+'%')
+        }
+    }
+    
+    //animation phone right
+    let pHeight = $('.js-decor-phone').outerHeight();
+    let pOTop = $('.js-decor-phone').offset().top; //позиция верха блока от верха <body>
+    let pPTop = $('.js-decor-phone').position().top; //позиция верха блока от верха родительсого блока с relative
+    let pBTop = pOTop - windowTop; //позиция верха блока от верха браузера
+    let pPercentAnimation=1;
+    if (((bodyHeight+windowTop) > pOTop) && ((windowTop) < (pOTop + pHeight))) {
+        
+        if ((pPercentAnimation < 100) && (pPercentAnimation > 0)) {
+            pPercentAnimation = ((pBTop)/bodyHeight)*80;
+        }
+        $('.js-decor-phone').css('transform', 'translateX('+pPercentAnimation+'%)')
+    }
 
+    //animation money right
+    let mrHeight = $('.js-decor-right').outerHeight();
+    let mrOTop = $('.js-decor-right').offset().top; //позиция верха блока от верха <body>
+    let mrPTop = $('.js-decor-right').position().top; //позиция верха блока от верха родительсого блока с relative
+    let mrBTop = mrOTop - windowTop; //позиция верха блока от верха браузера
+    let mrPercentAnimation=1;
+    if (((bodyHeight+windowTop) > mrOTop) && ((windowTop) < (mrOTop + pHeight))) {
+
+        if ((mrPercentAnimation < 100) && (mrPercentAnimation > 0)) {
+            mrPercentAnimation = ((mrBTop)/bodyHeight)*80;
+        }
+        $('.js-decor-right').css('transform', 'translateX('+mrPercentAnimation+'%)')
+    }
+
+    //animation money bottom
+    let mbHeight = $('.js-decor-bottom').outerHeight();
+    let mbOTop = $('.js-decor-bottom').offset().top; //позиция верха блока от верха <body>
+    let mbPTop = $('.js-decor-bottom').position().top; //позиция верха блока от верха родительсого блока с relative
+    let mbBTop = mbOTop - windowTop; //позиция верха блока от верха браузера
+    let mbPercentAnimation=1;
+    if (((bodyHeight+windowTop) > mbOTop) && ((windowTop) < (mbOTop + pHeight))) {
+
+        if ((mbPercentAnimation < 100) && (mbPercentAnimation > 0)) {
+            mbPercentAnimation = ((mbBTop)/bodyHeight)*80;
+        }
+        $('.js-decor-bottom').css('transform', 'translateX('+mbPercentAnimation+'%)')
+    }
+
+    //animation money left
+    let mlHeight = $('.js-decor-left').outerHeight();
+    let mlOTop = $('.js-decor-left').offset().top; //позиция верха блока от верха <body>
+    let mlPTop = $('.js-decor-left').position().top; //позиция верха блока от верха родительсого блока с relative
+    let mlBTop = mlOTop - windowTop; //позиция верха блока от верха браузера
+    let mlPercentAnimation=1;
+    if (((bodyHeight+windowTop) > mlOTop) && ((windowTop) < (mlOTop + pHeight))) {
+
+        if ((mlPercentAnimation < 100) && (mlPercentAnimation > 0)) {
+            mlPercentAnimation = -((mlBTop)/bodyHeight)*80;
+        }
+        $('.js-decor-left').css('transform', 'translateX('+mlPercentAnimation+'%)')
+    }
+
+
+    //animation scroll-main
+    let scMHeight = $('.js-scroll-main').outerHeight();
+    let scMOTop = $('.js-scroll-main').offset().top; //позиция верха блока от верха <body>
+    let scMPTop = $('.js-scroll-main').position().top; //позиция верха блока от верха родительсого блока с relative
+    let scMBTop = scMOTop - windowTop; //позиция верха блока от верха браузера
+    let scMPercentAnimation=1;
+    if (((bodyHeight+windowTop) > scMOTop) && ((windowTop) < (scMOTop + pHeight))) {
+
+        if ((scMPercentAnimation < 100) && (scMPercentAnimation > 0)) {
+            scMPercentAnimation = -((bodyHeight-scMBTop)/bodyHeight)*40;
+        }
+        $('.js-scroll-main').css('top', scMPercentAnimation+'%')
+    }
+
+
+    //animation scroll-second
+    let scSHeight = $('.js-scroll-second').outerHeight();
+    let scSOTop = $('.js-scroll-second').offset().top; //позиция верха блока от верха <body>
+    let scSPTop = $('.js-scroll-second').position().top; //позиция верха блока от верха родительсого блока с relative
+    let scSBTop = scSOTop - windowTop; //позиция верха блока от верха браузера
+    let scSPercentAnimation=1;
+    if (((bodyHeight+windowTop) > scSOTop) && ((windowTop) < (scSOTop + pHeight))) {
+
+        if ((scSPercentAnimation < 100) && (scSPercentAnimation > 0)) {
+            scSPercentAnimation = -((bodyHeight-scSBTop)/bodyHeight)*40;
+        }
+        $('.js-scroll-second').css('top', scSPercentAnimation+'%')
+    }
+});
+$(window).on('load',function () {
+    let windowTop = $(window).scrollTop();
+    let bodyHeight = $(window).innerHeight();
+
+
+    //animation black round
+    let rHeight = $('.js-decor-round').outerHeight();
+    let rOTop = $('.js-decor-round').offset().top; //позиция верха блока от верха <body>
+    let rPTop = $('.js-decor-round').position().top; //позиция верха блока от верха родительсого блока с relative
+    let rBTop = rOTop - windowTop; //позиция верха блока от верха браузера
+    let rPercentAnimation=1;
+    if (((bodyHeight+windowTop) > rOTop) && ((windowTop) < (rOTop + rHeight))) {
+        if ((rPercentAnimation < 100) && (rPercentAnimation > 0)) {
+            rPercentAnimation = (rBTop/bodyHeight)*9;
+        }
+        $('.js-decor-round .decor-element').css('top', rPercentAnimation+'%')
+    }
+});
